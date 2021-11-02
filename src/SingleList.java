@@ -81,6 +81,119 @@ public class SingleList {
 		}
 	}
 	
+	public listnode insertanywhere(int position,int value) {
+		listnode newthing=new listnode(value);
+		listnode current=head;
+		if(position==1) {
+			newthing.next=current;
+			head=newthing;
+			return head;
+		}
+		else
+		{
+			int count =1;
+			while(count<position-1) {
+				current=current.next;
+				count++;
+			}
+			newthing.next=current.next;
+			current.next=newthing;
+		    return head;
+			
+		}
+	}
+	public listnode deleteanywhere(int position){
+		listnode current=head;
+		if(position==1) {
+			current=current.next;
+			head=current;
+			return head;
+		}
+		else {
+			int count=1;
+			while(count<position-1) {
+				current=current.next;
+				count++;
+			}
+			current.next=current.next.next;
+			return head;
+		}
+	}
+	
+	public void findvalueexist(int value) {
+		listnode current=head;
+		while(current.next!=null) {
+			if(current.data==value) {
+				System.out.println("The value present in the list");
+				return;
+			}
+			else
+			{
+				current=current.next;
+			}
+			
+		}
+		System.out.println("The value is not there in the list");
+	}
+	public void findposition(int value) {
+		listnode current=head;
+		int count=1;
+		while(current.next!=null){
+			
+			if(current.data==value) {
+				System.out.println("the value is in position "+ count);
+				return;
+			}
+			else
+			{
+				current=current.next;
+				count++;
+			}
+		}
+		System.out.println("please enter a valid number");
+	}
+	public listnode listreverse() {
+	
+		if(head==null) {
+			return head;
+		}
+		else
+		{
+			listnode current =head;
+			listnode previous=null;
+			listnode next=null;
+			while(current.next!=null) {
+				next=current.next;
+				current.next=previous;
+				previous=current;
+				current=next;
+			}
+			
+			
+			return head=previous;
+			
+		}
+	}
+	public void findmiddle() {
+		if(head==null) {
+			System.out.println("there is no elements in the list");
+		}
+		else
+		{
+			listnode start=head;
+			listnode end =head;
+			while(end!=null && end.next!=null) {
+				start=start.next;
+				end=end.next.next;
+			}
+			
+			System.out.println("the middle element in the list is "+ start.data);
+			
+		}
+	}
+	
+
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -96,11 +209,20 @@ public class SingleList {
         sl.insertfirst(12);
         sl.insertfirst(101);
         sl.insertfirst(72);
-     
+        sl.insertfirst(72);
+        sl.insertfirst(13);
         sl.deletefirst();
         sl.deletelast();
         sl.insertlast(35);
-   
+
+        sl.insertanywhere(3,65);
+        sl.deleteanywhere(3);
+        sl.findvalueexist(20);
+        sl.findposition(12);
+
+        sl.listreverse();
+        sl.findmiddle();
+     
         sl.display();
         
 		
